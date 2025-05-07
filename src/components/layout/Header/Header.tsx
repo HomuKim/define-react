@@ -1,8 +1,7 @@
-// src/components/layout/Header/Header.tsx
-import React from 'react';
-import { useHeader } from './useHeader';
+import React, { useState } from 'react';
 import styles from './Header.module.css';
-// 라우터 사용 시 import { Link, useLocation } from 'react-router-dom';
+import logo from '../../../assets/images/logo.png';
+import { Link } from 'react-router-dom';
 
 const navLinks = [
   { to: '/', label: '홈' },
@@ -13,7 +12,23 @@ const navLinks = [
 ];
 
 const Header: React.FC = () => {
-  useHeader(); // 메뉴 기능 동작
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // 메뉴 오픈/클로즈
+  const handleMenuToggle = () => setMenuOpen((v) => !v);
+  const handleCloseMenu = () => setMenuOpen(false);
+
+  // body에 menu-open 클래스 추가/제거 (스크롤방지)
+  React.useEffect(() => {
+    if (menuOpen) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
+    return () => {
+      document.body.classList.remove('menu-open');
+    };
+  }, [menuOpen]);
 
   return (
     <>
@@ -25,28 +40,36 @@ const Header: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src="/images/logo.png" alt="Define The Body Logo" />
+              <img src={logo} alt="Define The Body Logo" />
             </a>
-            <a href="/" className={styles['logo-text']}>
+            <Link to="/" className={styles['logo-text']}>
               디파인더바디 피트니스
-            </a>
+            </Link>
           </div>
-          <button className={styles['menu-toggle']} aria-label="메뉴 열기">
+          <button
+            className={`${styles['menu-toggle']} ${menuOpen ? styles.active : ''}`}
+            aria-label="메뉴 열기"
+            onClick={handleMenuToggle}
+          >
             <span></span>
             <span></span>
             <span></span>
           </button>
-          <ul className={styles['nav-links']}>
+          <ul className={`${styles['nav-links']} ${menuOpen ? styles.active : ''}`}>
             {navLinks.map((link) => (
               <li key={link.to}>
-                <a href={link.to}>{link.label}</a>
-                {/* SPA에서 <Link to={link.to}>사용 */}
+                <Link to={link.to} onClick={handleCloseMenu}>
+                  {link.label}
+                </Link>
               </li>
             ))}
           </ul>
         </nav>
       </header>
-      <div className={styles['menu-overlay']}></div>
+      <div
+        className={`${styles['menu-overlay']} ${menuOpen ? styles.active : ''}`}
+        onClick={handleCloseMenu}
+      />
     </>
   );
 };
