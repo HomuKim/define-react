@@ -46,15 +46,16 @@
 }
 
 .hero-section h1 {
-	font-size: 60px;
-	margin-bottom: 20px;
+	font-size: 70px;
+	margin-bottom: 70px;
 	margin-top: 0px;
 }
 
 .hero-section p {
-	font-size: 40px;
+	font-size: 45px;
 	max-width: 1200px;
 	margin: 0 auto 50px;
+	margin-bottom: 80px;
 }
 
 /* CTA 버튼 스타일 */
@@ -136,10 +137,12 @@
 	justify-content: space-between;
 	background-position: center;
 	background-repeat: no-repeat;
+	background-size: cover;
 	overflow: hidden;
 	min-height: 200px;
 	width: 205px;
 	flex-basis: 300px;
+
 }
 
 .card::before {
@@ -175,26 +178,6 @@
 	font-size: 20px;
 	margin: 10px 0 0 0;
 	color: var(--pure-white);
-}
-
-.card-event {
-	/* background-image: url('image/index/event.jpg'); */
-	background-size: cover;
-}
-
-.card-staff {
-	/* background-image: url('image/index/staff.jpg'); */
-	background-size: cover;
-}
-
-.card-gym {
-	background-image: url('/src/assets/images/home/gym.JPEG');
-	background-size: cover;
-}
-
-.card-contact-us {
-	/* background-image: url('/images/index/contact.jpg'); */
-	background-size: cover;
 }
 
 @media screen and (max-width: 576px) {
