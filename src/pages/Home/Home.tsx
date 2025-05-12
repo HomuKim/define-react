@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ScrollReveal from '../../components/ScrollReveal';
 import style from './Home.module.css';
 
@@ -30,39 +30,53 @@ const featureCards = [
 ];
 
 const Home: React.FC = () => {
+  // Hero Section 페이드인 효과용 state
+  const [heroActive, setHeroActive] = useState(false);
+
+  useEffect(() => {
+    // 마운트 후 약간의 딜레이 뒤에 active 클래스를 추가
+    const timer = setTimeout(() => setHeroActive(true), 10);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div>
       <main>
         {/* Hero Section */}
-        <section className={style.heroSection}>
-          <div className={style.heroContent}>
-            <ScrollReveal direction="up" delay={0.1}>
-              <h1>건강한 삶을 시작하세요</h1>
-            </ScrollReveal>
-            <ScrollReveal direction="up" delay={0.3}>
-              <p>최신 장비와 전문 트레이너가 여러분을 기다리고 있습니다.</p>
-            </ScrollReveal>
-            <ScrollReveal direction="up" delay={0.5}>
-              <a
-                href="https://map.naver.com/p/entry/place/1960250523?placePath=%252Fhome%253Fentry%253Dplt&searchType=place&lng=127.0151611&lat=37.6086138&c=15.00,0,0,0,dh"
-                className={style.ctaButton}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                지금 방문하기
-              </a>
-            </ScrollReveal>
+        <section className={style['hero-section']}>
+          <div className={style['hero-content']}>
+            <h1
+              className={`${style['animate-sequence']} ${heroActive ? style.active : ''}`}
+              style={{ transitionDelay: '0.1s' }}
+            >
+              건강한 삶을 시작하세요
+            </h1>
+            <p
+              className={`${style['animate-sequence']} ${heroActive ? style.active : ''}`}
+              style={{ transitionDelay: '0.6s' }}
+            >
+              최신 장비와 전문 트레이너가 여러분을 기다리고 있습니다.
+            </p>
+            <a
+              href="https://map.naver.com/p/entry/place/1960250523?placePath=%252Fhome%253Fentry%253Dplt&searchType=place&lng=127.0151611&lat=37.6086138&c=15.00,0,0,0,dh"
+              className={`${style['cta-button']} ${style['animate-sequence']} ${heroActive ? style.active : ''}`}
+              style={{ transitionDelay: '1.1s' }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              지금 방문하기
+            </a>
           </div>
         </section>
 
         {/* Feature Cards Section */}
-        <section className={style.contentSection}>
-          <div className={style.featureCards}>
+        <section className={style['content-section']}>
+          <div className={style['feature-cards']}>
             {featureCards.map((card, idx) => (
               <ScrollReveal key={card.title} direction="up" delay={0.2 + idx * 0.15}>
                 <a
                   href={card.link}
-                  className={`${style.card} ${style['card' + card.title.replace(/\s/g, '')]}`}
+                  className={`${style.card} ${style['card-' + card.title.replace(/\s/g, '-').toLowerCase()]}`}
                   style={{ backgroundImage: `url(${card.image})` }}
                 >
                   <h3>{card.title}</h3>

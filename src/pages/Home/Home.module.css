@@ -1,5 +1,5 @@
 /* 히어로 섹션 스타일 */
-.heroSection {
+.hero-section {
 	height: 80vh;
 	/* 화면 전체 높이 */
 	text-align: center;
@@ -26,7 +26,7 @@
 }
 
 /* 히어로 섹션 오버레이 */
-.heroSection::before {
+.hero-section::before {
 	content: "";
 	position: absolute;
 	top: 0;
@@ -38,27 +38,27 @@
 }
 
 /* 히어로 콘텐츠 스타일 */
-.heroContent {
+.hero-content {
 	position: relative;
 	z-index: 2;
 	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 	font-weight: 500;
 }
 
-.heroSection h1 {
+.hero-section h1 {
 	font-size: 60px;
 	margin-bottom: 20px;
 	margin-top: 0px;
 }
 
-.heroSection p {
+.hero-section p {
 	font-size: 40px;
 	max-width: 1200px;
 	margin: 0 auto 50px;
 }
 
 /* CTA 버튼 스타일 */
-.ctaButton {
+.cta-button {
 	background-color: var(--primary-red);
 	color: white;
 	padding: 12px 24px;
@@ -71,18 +71,18 @@
 	text-decoration: none;
 }
 
-.ctaButton:hover {
+.cta-button:hover {
 	background-color: var(--hover-red);
 }
 
-.animatesequence {
+.animate-sequence {
 	opacity: 0;
 	/* 처음에 숨김 */
 	transition: opacity 0.8s ease, transform 0.6s ease;
 	/* 애니메이션 효과 */
 }
 
-.animatesequence.active {
+.animate-sequence.active {
 	opacity: 1;
 	/* 보임 */
 }
@@ -94,7 +94,7 @@
 
 
 /* 콘텐츠 섹션 스타일 */
-.contentSection {
+.content-section {
 	display: flex;
 	flex-direction: column;
 	/* 세로 정렬 */
@@ -108,7 +108,7 @@
 }
 
 /* 기능 카드 스타일 */
-.featureCards {
+.feature-cards {
 	display: grid;
 	/* 그리드 레이아웃 사용 */
 	grid-template-columns: repeat(4, 1fr);
@@ -118,7 +118,7 @@
 	max-width: 1200px;
 	/* 최대 너비 제한 */
 	margin: 0 auto;
-	max-width: 1200px;
+	padding-bottom: 60px;
 }
 
 .card {
@@ -137,7 +137,7 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	overflow: hidden;
-	height: 200px;
+	min-height: 200px;
 	width: 205px;
 	flex-basis: 300px;
 }
@@ -177,12 +177,12 @@
 	color: var(--pure-white);
 }
 
-.cardEvent {
+.card-event {
 	/* background-image: url('image/index/event.jpg'); */
 	background-size: cover;
 }
 
-.cardStaff {
+.card-staff {
 	/* background-image: url('image/index/staff.jpg'); */
 	background-size: cover;
 }
@@ -192,34 +192,34 @@
 	background-size: cover;
 }
 
-.cardcontact {
+.card-contact-us {
 	/* background-image: url('/images/index/contact.jpg'); */
 	background-size: cover;
 }
 
 @media screen and (max-width: 576px) {
-	.herosection {
+	.hero-section {
 		max-height: 240px;
 		background-size: 105%;
 	}
 
-	.herosection h1 {
+	.hero-section h1 {
 		font-size: 33px;
 	}
 
-	.herosection p {
+	.hero-section p {
 		font-size: 28px
 	}
 
 	/* 콘텐츠 섹션 스타일 */
-	.contentsection {
+	.content-section {
 		align-items: center;
 		/* 중앙 정렬 */
 		max-width: 100%;
 		/* 전체 너비 사용 */
 	}
 
-	.featurecards {
+	.feature-cards {
 		grid-template-columns: 1fr;
 		display: grid;
 		gap: 10px;
